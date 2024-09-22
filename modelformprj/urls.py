@@ -21,4 +21,5 @@ from modelform import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('form/', views.studentview),
+    path('thanku/', views.thankyou),
 ]

@@ -1,10 +1,17 @@
 from django.shortcuts import render
 from . import forms
 
+
 # Create your views here.
+
+
+def thankyou(request):
+    return render(request, 'modelform/thankyou.html')
+
+
 def studentview(request):
-    form=forms.studentform()
-    if request.method=="POST":
+    form = forms.studentform()
+    if request.method == "POST":
         form = forms.studentform(request.POST)
         if form.is_valid():
             print("form data is validated and printing feedback info")
@@ -12,6 +19,5 @@ def studentview(request):
             print("student rollno:", form.cleaned_data['rollno'])
             print("student mail id:", form.cleaned_data['email'])
             print("student feedback:", form.cleaned_data['feedback'])
-            return render(request, 'modelform/thankyou.html', {'name': form.cleaned_data['name']})
-    return render(request, 'modelform/feedback.html', {'form':form})
-
+            return thankyou(request)
+    return render(request, 'modelform/feedback.html', {'form': form})
